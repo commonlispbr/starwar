@@ -8,9 +8,10 @@
   :license "MIT"
   :description "A very simple starwar game. "
   :depends-on (:lispbuilder-sdl
-	       :lispbuilder-sdl-ttf
-	       :lispbuilder-sdl-gfx
-	       :org.xzpeter.game.lib)
+	       	   :lispbuilder-sdl-ttf
+	           :lispbuilder-sdl-gfx
+	           :lispbuilder-sdl-mixer
+	           :org.xzpeter.game.lib)
   :components ((:file "packages")
 	       (:file "globals" :depends-on ("packages"))
 	       (:file "hittable-circle" :depends-on ("packages"))
