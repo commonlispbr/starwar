@@ -1,7 +1,8 @@
 (in-package :cl-user)
-(defpackage :org.xzpeter.game.lib
+(defpackage :starwar-lib
   (:use :cl :lispbuilder-sdl)
-  (:export :run-game			; in misc.lisp
+  (:export
+       :run-game			; in misc.lisp
 	   :color-random
 	   :color-darken
 	   :color-invert
@@ -13,8 +14,8 @@
 	   :vector-norm
 	   :vector-length
 	   :vec2rad
-	   :rad2vec
-	   :vector+
+       :rad2vec
+       :vector+
 	   :vector-
 	   :vector*
 	   :vector-floor

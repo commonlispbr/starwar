@@ -1,5 +1,5 @@
 ;; defines the planet and related behavior
-(in-package :org.xzpeter.game.starwar)
+(in-package :starwar)
 
 (defmethod initialize-instance :after ((planet planet) &key)
   (with-accessors ((r r)) planet

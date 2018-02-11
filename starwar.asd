@@ -1,17 +1,20 @@
-(defpackage :org.xzpeter.game.starwar-system
+(defpackage :starwar-system
   (:use :cl :asdf))
-(in-package :org.xzpeter.game.starwar-system)
-(defsystem org.xzpeter.game.starwar
-  :name "org.xzpeter.game.starwar"
+
+(in-package :starwar-system)
+
+(defsystem starwar
+  :name "starwar"
   :author "xzpeter"
   :version "0.0.1"
   :license "MIT"
-  :description "A very simple starwar game. "
+  :description "A very simple starwar game."
   :depends-on (:lispbuilder-sdl
 	       	   :lispbuilder-sdl-ttf
 	           :lispbuilder-sdl-gfx
 	           :lispbuilder-sdl-mixer
-	           :org.xzpeter.game.lib)
+	           :starwar-lib)
+  :pathname "src"
   :components ((:file "packages")
 	       (:file "globals" :depends-on ("packages"))
 	       (:file "hittable-circle" :depends-on ("packages"))

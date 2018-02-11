@@ -1,5 +1,5 @@
 ;; define all the classes in the game
-(in-package :org.xzpeter.game.starwar)
+(in-package :starwar)
 
 (defclass star (hittable-circle)
   ((planet :initarg :planet :initform (error "cannot without planet!")
@@ -10,7 +10,7 @@
    (vect :initarg :vect :initform #(0.5 0) :accessor vect)
    (life :initarg :life :initform star-life-min)
    (target :initform nil :accessor target :documentation
-	   "target star to fight with") 
+	   "target star to fight with")
    (status :initform :idle :accessor status :documentation
 	   "what does the star think now? possble status are:
 :idle -- not doing anything now

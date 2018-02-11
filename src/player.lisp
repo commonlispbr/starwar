@@ -1,5 +1,5 @@
 ;; for player
-(in-package :org.xzpeter.game.starwar)
+(in-package :starwar)
 
 (defmethod player-planets ((player player))
   "find all the planets that belongs to player"

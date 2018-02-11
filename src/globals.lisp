@@ -1,12 +1,12 @@
 ;; variables definitions
-(in-package :org.xzpeter.game.starwar)
+(in-package :starwar)
 
 (defparameter *debug-string* "")
 
 (defvar color-grey (sdl:color :r 80 :g 80 :b 80))
 
 (defparameter screen-width 800)
-(defparameter screen-height 600) 
+(defparameter screen-height 600)
 (defparameter bg-color sdl:*black*)
 (defparameter game-frame-color sdl:*white*)
 
@@ -68,8 +68,8 @@ generateing the map. ")
   "how far can a star moves away from its owner")
 
 ;; when the mouse moves to the edge of the screen, we should move the screen
-;; position on the worldmap. 
-;; these are the margin place, outside which the moving is activated. 
+;; position on the worldmap.
+;; these are the margin place, outside which the moving is activated.
 (defparameter margin-left 10)
 (defparameter margin-top 10)
 
@@ -77,7 +77,7 @@ generateing the map. ")
 (defparameter bg-star-size-max 2)
 (defparameter bg-star-size-min 1)
 (defparameter bg-star-n 50)
-    
+
 (defparameter *star-color-selected* sdl:*yellow*)
 
 (defparameter star-safe-distance 40)
@@ -103,7 +103,7 @@ generateing the map. ")
 (defun load-file-set-parameters (filename)
   "read one file and load all the parameters"
   ;; here, we MUST make sure that we are in the RIGHT package (that is the
-  ;; starwar package. or the parameters will not be set! 
+  ;; starwar package. or the parameters will not be set!
   (with-open-file (s filename)
     (do ((form (read s) (read s nil 'eof)))
 	((eq form 'eof) nil)
@@ -111,7 +111,7 @@ generateing the map. ")
 	  (error "configure file format not right!"))
       (setq form (cons 'defparameter form))
       (format t "eval: ~a~%" form)
-      (eval form)))) 
+      (eval form))))
 
 (defun auto-generate-planets (amount)
   "auto generate planets and normally set the *planet-list* var.
@@ -190,10 +190,10 @@ INIT-AMOUNT is how many planets one player own at the beginning of game"
 	*bg-stars* (generate-bg-stars bg-star-n)
 	*planet-list* (planet-sort-by-size
 		       (auto-generate-planets planet-total)))
-  
+
   (setf (player (fifth *planet-list*)) *player1*)
   (setf (player (sixth *planet-list*)) *player2*)
-  
+
   ;; load all the configure file
   (load-file-set-parameters "starwar.conf")
 

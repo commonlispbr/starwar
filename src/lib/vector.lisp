@@ -1,5 +1,5 @@
 ;; some vector related functions
-(in-package :org.xzpeter.game.lib)
+(in-package :starwar-lib)
 
 ;; fix any rad to: -pi/2 ~ 3pi/2
 (defun rad-fix (rad)
@@ -8,18 +8,23 @@
 		  (> r (* pi 1.5)))
 	     (* pi 2)
 	     0))))
+
 (defmacro vx (v)
   `(aref ,v 0))
+
 (defmacro vy (v)
   `(aref ,v 1))
+
 (defun vector-norm (vect)
   (let* ((x (vx vect))
 	 (y (vy vect))
 	 (a (sqrt (+ (* x x) (* y y)))))
     (vector (/ x a) (/ y a))))
+
 (defun vector-length (vect)
   (let ((x (vx vect)) (y (vy vect)))
     (sqrt (+ (* x x) (* y y)))))
+
 ;; from -pi/2 ~ 3pi/2
 (defun vec2rad (vect)
   (let ((x (vx vect)) (y (vy vect)))
@@ -30,6 +35,7 @@
 	(if (plusp y) (/ pi 2) (/ pi -2))
 	(let ((rad (atan (/ y x))))
 	  (+ rad (if (minusp x) pi 0))))))
+
 ;; rad should be from -pi/2~3pi/2
 ;; the vector returned are NOT normalized!!!
 (defun rad2vec (rad)
@@ -41,6 +47,7 @@
     (t (if (> rad (* pi 0.5))
 	   (vector -1 (- (tan rad)))
 	   (vector 1 (tan rad))))))
+
 (defun vector+ (a b)
   (if (not (and (vectorp a) (vectorp b)))
       (error "A and B must be vector!"))
@@ -49,6 +56,7 @@
 	(y0 (vy a))
 	(y1 (vy b)))
     (vector (+ x0 x1) (+ y0 y1))))
+
 (defun vector- (a b)
   (if (not (and (vectorp a) (vectorp b)))
       (error "A and B must be vector!"))
@@ -57,6 +65,7 @@
 	(y0 (vy a))
 	(y1 (vy b)))
     (vector (- x0 x1) (- y0 y1))))
+
 (defun vector* (a n)
   (cond ((and (vectorp a) (numberp n))
 	 (let ((x (vx a))
@@ -69,6 +78,7 @@
 	       (y1 (vy n)))
 	   (vector (* x0 x1) (* y0 y1))))
 	(t (error "not supported *!"))))
+
 (defun vector-floor (vect)
   (vector (floor (vx vect)) (floor (vy vect))))
 

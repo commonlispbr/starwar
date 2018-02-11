@@ -1,5 +1,5 @@
 ;; definitions of stars
-(in-package :org.xzpeter.game.starwar)
+(in-package :starwar)
 
 (defmethod life ((star star))
   (r star))
@@ -92,7 +92,7 @@ own status"
 		     ;; there is not much thing todo, just going around
 		     (t (random-vect 0.1)))
 		   vect))))
-	    
+
 	    (when (outside-world-x (vx pos))
 	      (setq res (vector* res #(-1 1))))
 	    (when (outside-world-y (vy pos))

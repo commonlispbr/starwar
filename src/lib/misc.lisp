@@ -1,5 +1,5 @@
 ;; I will put misc functions related to CL game here
-(in-package :org.xzpeter.game.lib)
+(in-package :starwar-lib)
 
 ;; use run-game to run any game with threading
 (defvar *game-thread* nil)

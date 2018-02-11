@@ -1,10 +1,10 @@
 ;; defines the hittable-circle object
-(in-package :org.xzpeter.game.starwar)
+(in-package :starwar)
 
 (defclass hittable-circle ()
   ((pos :initarg :pos :initform (error "must have init position")
 	:accessor pos :documentation "center of the circle")
-   (r :initarg :r :initform 0 
+   (r :initarg :r :initform 0
       :accessor r :documentation "radius of the circle"))
   (:documentation "A circle that is hittable"))
 

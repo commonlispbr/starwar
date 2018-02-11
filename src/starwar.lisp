@@ -1,4 +1,4 @@
-(in-package :org.xzpeter.game.starwar)
+(in-package :starwar)
 
 ;; game control
 ;; [LEFT BUTTON] to select planet
@@ -256,7 +256,7 @@ the outter rect. the rect is filled by VALUE/FULL-VALUE"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun main ()
   ;; this might be useful when making binary images
-  (in-package :org.xzpeter.game.starwar)
+  (in-package :starwar)
   (sdl:with-init (sdl:sdl-init-video sdl:sdl-init-audio)
     (setq sdl:*default-font* (sdl:initialise-font sdl:*font-8x13o*))
     ;; (sdl:initialise-default-font sdl:*font-9x18b*)
@@ -268,7 +268,7 @@ the outter rect. the rect is filled by VALUE/FULL-VALUE"
                 :icon-caption "Star War")
     (set-game-running t)
     ;; music background
-    (sdl-mixer:OPEN-AUDIO)
+    (sdl-mixer:open-audio)
     (let ((music (sdl-mixer:load-music "background.mp3")))
       (sdl-mixer:play-music music :loop t)
       (sdl:with-events ()
