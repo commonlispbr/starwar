@@ -6,7 +6,7 @@
 (defsystem starwar-lib
   :name "starwar-lib"
   :author "Peter Xu"
-  :version "0.0.1"
+  :version "0.1.0"
   :licence "MIT"
   :description "Some basic functions related to game"
   :pathname "src/lib/"

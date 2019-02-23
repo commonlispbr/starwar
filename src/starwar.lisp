@@ -77,6 +77,7 @@
         (setq speed star-speed-max))
     (setq star-speed speed))
   (setq *news* (format nil "Increase speed to ~ax" star-speed)))
+
 (defun decrease-star-speed ()
   (let ((speed (- star-speed 0.5)))
     (if (< speed star-speed-min)
@@ -269,7 +270,7 @@ the outter rect. the rect is filled by VALUE/FULL-VALUE"
     (set-game-running t)
     ;; music background
     (sdl-mixer:open-audio)
-    (let ((music (sdl-mixer:load-music "background.mp3")))
+    (let ((music (sdl-mixer:load-music (portable-pathname "background.mp3"))))
       (sdl-mixer:play-music music :loop t)
       (sdl:with-events ()
         (:quit-event () (sdl-mixer:Halt-Music)

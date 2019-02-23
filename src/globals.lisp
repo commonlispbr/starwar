@@ -104,12 +104,12 @@ generateing the map. ")
   "read one file and load all the parameters"
   ;; here, we MUST make sure that we are in the RIGHT package (that is the
   ;; starwar package. or the parameters will not be set!
-  (with-open-file (s filename)
+  (with-open-file (s (portable-pathname filename))
     (do ((form (read s) (read s nil 'eof)))
 	((eq form 'eof) nil)
       (if (not (= (length form) 2))
 	  (error "configure file format not right!"))
-      (setq form (cons 'defparameter form))
+      (setq form (cons 'defvar form))
       (format t "eval: ~a~%" form)
       (eval form))))
 
