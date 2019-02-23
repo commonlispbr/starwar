@@ -109,7 +109,7 @@ generateing the map. ")
 	((eq form 'eof) nil)
       (if (not (= (length form) 2))
 	  (error "configure file format not right!"))
-      (setq form (cons 'defvar form))
+      (setq form (cons 'defparameter form))
       (format t "eval: ~a~%" form)
       (eval form))))
 
