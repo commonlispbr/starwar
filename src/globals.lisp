@@ -86,12 +86,15 @@ generateing the map. ")
 (defparameter planet-core-radius 3)
 (defparameter star-max-amount 1000)
 
-(defparameter screen-rightmost (- world-rightmost screen-width))
-(defparameter screen-bottommost (- world-bottommost screen-height))
-(defparameter world-width (- world-rightmost world-leftmost))
-(defparameter world-height (- world-bottommost world-topmost))
-(defparameter margin-bottom (- screen-height 10))
-(defparameter margin-right (- screen-width 10))
+(defun load-world-limits ()
+  (defparameter screen-rightmost (- world-rightmost screen-width))
+  (defparameter screen-bottommost (- world-bottommost screen-height))
+  (defparameter world-width (- world-rightmost world-leftmost))
+  (defparameter world-height (- world-bottommost world-topmost))
+  (defparameter margin-bottom (- screen-height 10))
+  (defparameter margin-right (- screen-width 10)))
+
+(load-world-limits)
 
 (defun generate-bg-stars (n)
   "generate N bg stars and return list"
@@ -196,10 +199,4 @@ INIT-AMOUNT is how many planets one player own at the beginning of game"
 
   ;; load all the configure file
   (load-file-set-parameters "starwar.conf")
-
-  (setq screen-rightmost (- world-rightmost screen-width))
-  (setq screen-bottommost (- world-bottommost screen-height))
-  (setq world-width (- world-rightmost world-leftmost))
-  (setq world-height (- world-bottommost world-topmost))
-  (setq margin-bottom (- screen-height 10))
-  (setq margin-right (- screen-width 10)))
+  (load-world-limits))

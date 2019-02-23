@@ -85,6 +85,12 @@
     (setq star-speed speed))
   (setq *news* (format nil "Decrease speed to ~ax" star-speed)))
 
+(defun toggle-fullscreen ()
+  (if fullscreen
+      (sdl:resize-window screen-width screen-height :sw t :resizable t)
+      (sdl:resize-window screen-width screen-height :sw t :fullscreen t))
+  (setf fullscreen (not fullscreen)))
+
 (defun handle-key (key)
   (case key
     (:sdl-key-escape
@@ -95,6 +101,8 @@
      (set-game-running *paused*))
     (:sdl-key-r
      (clear-global-vars))
+    (:sdl-key-f11
+     (toggle-fullscreen))
     (:sdl-key-minus
      (decrease-star-speed))
     (:sdl-key-equals
@@ -103,6 +111,8 @@
      (when *game-over*
        (clear-global-vars)
        (set-game-running t)))))
+
+
 
 ;; draw the information line by line
 (defun draw-information (&rest infos)
@@ -120,6 +130,7 @@
     (:up (decf *screen-pos-y* scroll-speed))
     (:down (incf *screen-pos-y* scroll-speed))
     (otherwise (error "unknown direction!"))))
+
 (defun fix-screen-pos-overflow ()
   (when (> *screen-pos-x* screen-rightmost)
     (setq *screen-pos-x* screen-rightmost))
@@ -129,6 +140,7 @@
     (setq *screen-pos-y* screen-bottommost))
   (when (< *screen-pos-y* screen-topmost)
     (setq *screen-pos-y* screen-topmost)))
+
 (defun move-screen-on-worldmap ()
   (let ((x (sdl:mouse-x)) (y (sdl:mouse-y)))
     (when (or (<= x margin-left)
@@ -265,6 +277,7 @@ the outter rect. the rect is filled by VALUE/FULL-VALUE"
     (format t "fullscreen: ~a~%" fullscreen)
     (sdl:window screen-width screen-height
                 :fullscreen fullscreen
+                :resizable t
                 :title-caption "Star War"
                 :icon-caption "Star War")
     (set-game-running t)
@@ -285,6 +298,12 @@ the outter rect. the rect is filled by VALUE/FULL-VALUE"
                                   (handle-mouse-button button x y t))
         (:mouse-button-up-event (:button button :x x :y y)
                                 (handle-mouse-button button x y nil))
+
+        (:video-resize-event (:w w :h h)
+                             (setq screen-width w)
+                             (setq screen-height h)
+                             (sdl:resize-window w h)
+                             (load-world-limits))
         (:idle ()
                (unless *game-over*
                  (sdl:clear-display bg-color)

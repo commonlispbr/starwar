@@ -1,3 +1,4 @@
 system-index.txt
 release/
 *.tar*
+*.fasl
