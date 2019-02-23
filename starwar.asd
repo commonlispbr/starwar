@@ -6,7 +6,7 @@
 (defsystem starwar
   :name "starwar"
   :author "xzpeter"
-  :version "0.1.0"
+  :version "0.2.0"
   :license "MIT"
   :description "A very simple starwar game."
   :depends-on (:lispbuilder-sdl
