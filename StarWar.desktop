@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=StarWar
+Comment=A survival and dominance starwar game
+Exec=./starwar.lisp
+Icon=gcstar
+Terminal=false
+StartupNotify=false

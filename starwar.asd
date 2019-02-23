@@ -6,18 +6,20 @@
 (defsystem starwar
   :name "starwar"
   :author "xzpeter"
-  :version "0.0.1"
+  :version "0.2.0"
   :license "MIT"
   :description "A very simple starwar game."
   :depends-on (:lispbuilder-sdl
 	       	   :lispbuilder-sdl-ttf
 	           :lispbuilder-sdl-gfx
 	           :lispbuilder-sdl-mixer
+               :cffi
 	           :starwar-lib)
   :pathname "src"
   :components ((:file "packages")
+               (:file "path")
                (:file "make-binary")
-               (:file "globals" :depends-on ("packages"))
+               (:file "globals" :depends-on ("packages" "path"))
                (:file "hittable-circle" :depends-on ("packages"))
                (:file "classes" :depends-on ("packages"
                                              "hittable-circle"))
@@ -34,6 +36,7 @@
                                             "classes"
                                             "globals"))
                (:file "starwar" :depends-on ("packages"
+                                             "path"
                                              "globals"
                                              "hittable-circle"
                                              "star"
