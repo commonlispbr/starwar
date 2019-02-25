@@ -1,4 +1,7 @@
+(pushnew (uiop/os:getcwd) asdf:*central-registry*)
+(ql:register-local-projects)
 (ql:quickload :starwar)
 (in-package :starwar)
 (setq *compression* 1)
 (make-binary)
+(delete-file (probe-file "system-index.txt"))
