@@ -6,6 +6,10 @@
 (defparameter *compression* 9)
 (defparameter *libprefix* "lib/")
 (defvar *libraries* nil)
+(defparameter *ld-library-path*
+  (list "/lib/"
+        "/usr/lib/"
+        "/usr/lib/x86_64-linux-gnu/"))
 
 (defun libpath (prefix)
   (merge-pathnames prefix (uiop/os:getcwd)))
@@ -22,10 +26,19 @@
         when lpath
           collect lfrom))
 
+(defun search-libraries (&optional (paths *ld-library-path*))
+  (loop for path in paths
+        for libraries = (get-libraries path)
+        when libraries
+          return (progn
+                   (format t "FOUND HOST LIBRARIES AT ~a~%" path)
+                   libraries)))
+
+
 (defun dump-libraries (&optional (to *libprefix*))
-  (format t "~%LIBPATH: ~a~%" (libpath to))
+  (format t "~%LIBDUMP PATH: ~a~%" (libpath to))
   (ensure-directories-exist (libpath to))
-  (let ((libs (get-libraries)))
+  (let ((libs (search-libraries)))
     (setq *libraries* (get-libraries-names))
     (loop for lib in (get-libraries)
           do (sb-ext:run-program "/bin/cp"
