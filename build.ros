@@ -1,0 +1,23 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  (pushnew (uiop/os:getcwd) asdf:*central-registry*)
+  (ql:register-local-projects)
+  (ql:quickload :starwar)
+  )
+
+(defpackage :ros.script.starwar.3875017217
+  (:use :cl))
+
+(in-package :ros.script.starwar.3875017217)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (starwar:make-binary)
+  (delete-file (probe-file "system-index.txt"))
+  )
+;;; vim: set ft=lisp lisp:
