@@ -16,3 +16,11 @@ An additional music was integrated made by the band Miami Vice, track
 
 All the rights are reserved to xzpeter, the original game author and the background
 music to the Miami Vice band.
+
+# Build dependencies
+
+```
+sudo apt install sbcl libsmpeg0 libsdl1.2debian libsdl-ttf2.0-0 libsdl-gfx1.2-5 libsdl-mixer1.2
+```
+
+The install assumes a proper quicklisp setup environment.
